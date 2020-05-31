@@ -1,10 +1,31 @@
-import {main} from 'magica'
-(async ()=>{
- const result = await main({
-    debug: true,
-    command: 'convert bar.gif -scale 150% -rotate 45 foo.png',
-    inputFiles: [ 'static/img/bar.gif' ]
-  })
-  const dataUrl = `data:image/png;base64,${btoa(String.fromCharCode(...result.outputFiles[0].content))}`
-  document.getElementById('img-foo').src = dataUrl
-})()
+import { main } from 'magica'
+import { File } from 'magica'
+
+
+let input = document.querySelector('.file-input');
+input.addEventListener('change', (e) => {
+
+
+
+    (async () => {
+        let files = await File.fromHtmlFileInputElement(input);
+        
+        let file = files[0];
+
+        let fnFull = file.name;
+        let fnName = file.name.split('.')[0];
+        let fnExt = file.name.split('.').pop();
+        
+
+        const result = await main({
+            debug: true,
+            command: `convert '${fnFull}' -scale 50% -rotate 45 '${fnName}-out.png'`,
+            inputFiles: [file]
+        })
+        
+        let blob = new Blob([result.outputFiles[0].content.buffer], { type: 'image/png' });
+        document.getElementById('img-foo').src = URL.createObjectURL(blob);
+    })()
+
+})
+
