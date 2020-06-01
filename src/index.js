@@ -1,11 +1,11 @@
 import { main } from 'magica'
 import { File } from 'magica'
+import "./main.scss"
 
+console.log('done loading')
 
 let input = document.querySelector('.file-input');
 input.addEventListener('change', (e) => {
-
-
 
     (async () => {
         let files = await File.fromHtmlFileInputElement(input);
@@ -16,10 +16,9 @@ input.addEventListener('change', (e) => {
         let fnName = file.name.split('.')[0];
         let fnExt = file.name.split('.').pop();
         
-
         const result = await main({
             debug: true,
-            command: `convert '${fnFull}' -scale 50% -rotate 45 '${fnName}-out.png'`,
+            command: `convert '${fnFull}' -quality 80 '${fnName}-out.jpeg'`,
             inputFiles: [file]
         })
         
