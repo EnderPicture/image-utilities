@@ -11,6 +11,7 @@ var app = new Vue({
             'tiff',
             'gif',
             'bmp',
+            'webp',
         ],
         currentFormat: 0,
 
