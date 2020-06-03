@@ -6,9 +6,10 @@ var app = new Vue({
     el: '#app',
     data: {
         formats: [
-            'jpeg',
+            'jpg',
             'png',
-            'tiff',
+            'png8',
+            'tif',
             'gif',
             'bmp',
             'webp',
@@ -39,8 +40,11 @@ var app = new Vue({
                     this.newFileName = `${fnName}-out.${this.format}`;
 
                     let command = '';
-                    if (this.currentFormat == 0) {
+                    if (this.formats[this.currentFormat] == 'jpg') {
                         command = `convert '${fnFull}' -quality ${this.quality} '${this.newFileName}'`;
+                    } else if (this.formats[this.currentFormat] == 'png8') {
+                        this.newFileName = `${fnName}-out.png`;
+                        command = `convert '${fnFull}' -colors 256 PNG8:'${this.newFileName}'`;
                     } else {
                         command = `convert '${fnFull}' '${this.newFileName}'`;
                     }
