@@ -50,7 +50,7 @@ var app = new Vue({
                     }
 
                     const result = await main({
-                        debug: true,
+                        // debug: true,
                         command: command,
                         inputFiles: [file]
                     })
