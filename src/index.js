@@ -7,6 +7,7 @@ var app = new Vue({
     data: {
         formats: [
             'jpg',
+            'jp2',
             'png',
             'png8',
             'tif',
