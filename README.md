@@ -1,6 +1,9 @@
 # image-utilities
+## use it now
 
-## get started
+[click here](https://enderpicture.github.io/image-utilities/)
+
+## build it yourself
 
 npm install
 
