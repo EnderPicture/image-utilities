@@ -7,4 +7,6 @@
 
 npm install
 
-copy wasm from node_modules/magica/dist/src/imageMagick/compiled/magick.wasm to pub/magick.wasm 
+copy wasm from node_modules/magica/dist/src/imageMagick/compiled/magick.wasm to dist/magick.wasm 
+
+npm run prod
