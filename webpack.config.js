@@ -16,6 +16,9 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
+            }, {
+                test: /\.worker\.js$/,
+                use: 'worker-loader'
             }
         ]
     },

@@ -24,12 +24,12 @@
 <body>
     <div id="app">
         <div class="center">
-            <h1 class="title">* to {{format}}</h1>
+            <h1 class="title">* to {{format.name}}</h1>
             <h2 class="subtitle">the web's offline image converter</h2>
             <div class="options">
                 <div class="format-list">
                     <p :class="{'format':true, 'format_selected': index == currentFormat}"
-                        v-for="(format, index) in formats" @click="currentFormat = index">{{format}}</p>
+                        v-for="(format, index) in formats" @click="currentFormat = index">{{format.name}}</p>
                 </div>
                 <div class="quality" v-if="currentFormat == 0">
                     <button :class="{'quality__button': true, 'quality__button_selected': quality == index}"
@@ -42,8 +42,8 @@
                 Select File
                 <input class="file-input" type='file' />
             </label>
-            <a v-if="resultImageUrl != ''" class="save" :href="resultImageUrl" :download="newFileName">
-                <p class="save__text">save {{newFileName}}</p>
+            <a v-if="saveButtonText != ''" class="save" :href="resultImageUrl" :download="newFileName">
+                <p class="save__text">{{saveButtonText}}</p>
 
                 <img class="img-preview" :src="resultImageUrl" alt="">
             </a>
