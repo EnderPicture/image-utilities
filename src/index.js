@@ -1,6 +1,4 @@
 import MagickW from './magick.worker'
-import { main } from 'magica'
-import { File } from 'magica'
 import "./main.scss"
 
 var app = new Vue({
@@ -43,6 +41,7 @@ var app = new Vue({
         currentFormat: 0,
 
         saveButtonText: '',
+        processing: false,
         resultImageUrl: '',
         newFileName: '',
         quality: 90,
@@ -66,6 +65,7 @@ var app = new Vue({
                 let fnName = file.name.split('.')[0];
                 let fnExt = file.name.split('.').pop();
 
+                this.processing = true;
                 this.saveButtonText = `processing ${fnFull} ...`;
                 this.newFileName = `${fnName}-out.${this.format.extension}`;
 
@@ -85,6 +85,7 @@ var app = new Vue({
                 }
                 worker.postMessage(message);
                 worker.onmessage = args => {
+                    this.processing = false;
                     this.resultImageUrl = URL.createObjectURL(args.data.output);
                     this.saveButtonText = `Save ${this.newFileName}`
                 };
