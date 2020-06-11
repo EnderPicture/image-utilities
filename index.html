@@ -42,7 +42,7 @@
                 Select File
                 <input class="file-input" type='file' />
             </label>
-            <a v-if="saveButtonText != ''" class="save" :href="resultImageUrl" :download="newFileName">
+            <a v-if="saveButtonText != ''" :class="{'save': true, 'save__processing': processing}" :href="resultImageUrl" :download="newFileName">
                 <p class="save__text">{{saveButtonText}}</p>
 
                 <img class="img-preview" :src="resultImageUrl" alt="">
