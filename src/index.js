@@ -10,7 +10,7 @@ var app = new Vue({
                 extension: 'jpg',
             },
             {
-                name: 'jpeg2000',
+                name: 'jpeg 2000',
                 extension: 'jp2',
             },
             {
