@@ -45,10 +45,10 @@
                 Select File
                 <input class="file-input" type='file' @input="inputFileEvent"/>
             </label>
-            <a v-if="saveButtonText != ''" :class="{'save': true, 'save__processing': processing}" :href="resultImageUrl" :download="newFileName">
-                <p class="save__text">{{saveButtonText}}</p>
+            <a v-for="file in processedFiles" :class="{'save': true, 'save__processing': file.processing, 'save__failed': file.failed}" :href="file.resultImageUrl" :download="file.newFileName">
+                <p class="save__text">{{file.saveButtonText}}</p>
 
-                <img class="img-preview" :src="resultImageUrl" alt="">
+                <img class="img-preview" :src="file.resultImageUrl" alt="">
             </a>
         </div>
     </div>
