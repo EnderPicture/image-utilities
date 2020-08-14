@@ -42,8 +42,8 @@
                 </div>
             </div>
             <label class="input">
-                Select File
-                <input class="file-input" type='file' @input="inputFileEvent"/>
+                Click To Select Multiple Files or Drag Files Into Window
+                <input class="file-input" type='file' @input="inputFileEvent" multiple/>
             </label>
             <a v-for="file in processedFiles" :class="{'save': true, 'save__processing': file.processing, 'save__failed': file.failed}" :href="file.resultImageUrl" :download="file.newFileName">
                 <p class="save__text">{{file.saveButtonText}}</p>
