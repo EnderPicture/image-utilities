@@ -54,7 +54,16 @@ var app = new Vue({
     methods: {
         inputFileEvent(e) {
             let files = e.target.files;
+            console.log(files);
             this.run(files);
+            e.target.value = '';
+        },
+        dropEvent(e) {
+            let files = e.dataTransfer.files;
+            this.run(files);
+        },
+        dropOverEvent(e) {
+
         },
         run(files) {
             for (let i = 0; i < files.length; i++) {
@@ -85,9 +94,14 @@ var app = new Vue({
                 }
                 worker.postMessage(message);
                 worker.onmessage = args => {
-                    this.processing = false;
-                    this.resultImageUrl = URL.createObjectURL(args.data.output);
-                    this.saveButtonText = `Save ${this.newFileName}`
+                    if (args.data.status == 'good') {
+                        this.processing = false;
+                        this.resultImageUrl = URL.createObjectURL(args.data.output);
+                        this.saveButtonText = `Save ${this.newFileName}`;
+                    } else {
+                        this.processing = false;
+                        this.saveButtonText = `Failed processing ${this.newFileName}`;
+                    }
                 };
             }
         }

@@ -13,8 +13,12 @@ html {
     background-color: #333;
 }
 
+#app {
+    min-height: 100vh;
+    display: flex;
+}
 .center {
-    margin: auto;
+    margin: 0 auto;
     width: 60vw;
 }
 
@@ -197,4 +201,14 @@ html {
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
+}
+
+.drag-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+    pointer-events: none;
 }

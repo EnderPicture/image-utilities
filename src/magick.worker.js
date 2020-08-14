@@ -16,10 +16,16 @@ onmessage = args => {
             inputFiles: [file]
         })
 
-        let blob = new Blob([result.outputFiles[0].content.buffer], { type: `image/${extension}` });
-        postMessage({
-            status: 'good',
-            output: blob
-        })
+        if (result.outputFiles.length > 1) {
+            let blob = new Blob([result.outputFiles[0].content.buffer], { type: `image/${extension}` });
+            postMessage({
+                status: 'good',
+                output: blob
+            });
+        } else {
+            postMessage({
+                status: 'failed',
+            });
+        }
     })();
 }
